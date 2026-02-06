@@ -1,0 +1,37 @@
+[build-system]
+requires = ["briefcase"]
+build-backend = "briefcase.integrations.setuptools"
+
+[tool.briefcase]
+project_name = "Couples Expenses"
+bundle = "com.example"
+version = "0.1.0"
+url = "https://example.com/couples-expenses"
+license.file = "LICENSE"
+author = "Developer"
+author_email = "dev@example.com"
+
+[tool.briefcase.app.couples_expenses]
+formal_name = "Couples Expenses"
+description = "Expense tracking app for couples"
+long_description = "A cross-platform expense management app for couples built with BeeWare."
+sources = ["src/couples_expenses"]
+requires = []
+
+[tool.briefcase.app.couples_expenses.macOS]
+requires = ["toga-cocoa~=0.4.0"]
+
+[tool.briefcase.app.couples_expenses.linux]
+requires = ["toga-gtk~=0.4.0"]
+
+[tool.briefcase.app.couples_expenses.windows]
+requires = ["toga-winforms~=0.4.0"]
+
+[tool.briefcase.app.couples_expenses.iOS]
+requires = ["toga-iOS~=0.4.0"]
+
+[tool.briefcase.app.couples_expenses.android]
+requires = ["toga-android~=0.4.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
