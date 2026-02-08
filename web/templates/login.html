@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" style="max-width: 400px; margin: 60px auto;">
+    <h1 style="text-align: center;">🔐 כניסה</h1>
+    <p style="text-align: center; color: #666; margin-bottom: 16px;">הוצאות הזוג</p>
+    <form method="POST">
+        <label>שם משתמש</label>
+        <input type="text" name="username" required autofocus>
+        <label>סיסמה</label>
+        <input type="password" name="password" required>
+        <button type="submit" class="btn btn-primary btn-block">כניסה</button>
+    </form>
+</div>
+{% endblock %}

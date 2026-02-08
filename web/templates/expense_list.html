@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>רשימת הוצאות</h1>
+
+    <form method="GET" class="filters">
+        <select name="month" onchange="this.form.submit()">
+            <option value="">כל החודשים</option>
+            {% for m in months %}
+            <option value="{{ m }}" {{ 'selected' if m == selected_month }}>{{ m }}</option>
+            {% endfor %}
+        </select>
+        <select name="category" onchange="this.form.submit()">
+            <option value="">כל הקטגוריות</option>
+            {% for c in categories %}
+            <option value="{{ c }}" {{ 'selected' if c == selected_category }}>{{ c }}</option>
+            {% endfor %}
+        </select>
+        <select name="paid_by" onchange="this.form.submit()">
+            <option value="">כל השותפים</option>
+            {% for p in partners %}
+            <option value="{{ p }}" {{ 'selected' if p == selected_paid_by }}>{{ p }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if expenses %}
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th>תאריך</th>
+                    <th>סכום</th>
+                    <th>קטגוריה</th>
+                    <th>שולם ע"י</th>
+                    <th>תיאור</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in expenses %}
+                <tr>
+                    <td>{{ e.expense_ts[:16] | replace('T', ' ') }}</td>
+                    <td>₪{{ '%.2f' | format(e.amount_cents / 100) }}</td>
+                    <td>{{ e.category }}</td>
+                    <td>{{ e.paid_by }}</td>
+                    <td>{{ e.description }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('delete_expense_route', expense_id=e.id) }}"
+                              onsubmit="return confirm('למחוק את ההוצאה?');" style="display:inline;">
+                            <button type="submit" class="btn btn-danger" style="padding: 4px 10px; font-size: 13px;">🗑</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p style="margin-top: 12px; color: #666; font-size: 13px;">סה"כ {{ expenses | length }} הוצאות</p>
+    {% else %}
+    <p style="text-align: center; color: #999; padding: 40px 0;">אין הוצאות להצגה</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+    <h1>דשבורד</h1>
+
+    <form method="GET" class="filters">
+        <select name="month" onchange="this.form.submit()">
+            <option value="">בחר חודש</option>
+            {% for m in months %}
+            <option value="{{ m }}" {{ 'selected' if m == selected_month }}>{{ m }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if selected_month %}
+    <div class="kpi-grid">
+        <div class="kpi-box">
+            <div class="kpi-value">₪{{ '%.2f' | format(summary.total_cents / 100) }}</div>
+            <div class="kpi-label">סה"כ הוצאות</div>
+        </div>
+        {% for cat, val in summary.by_category_cents.items() %}
+        <div class="kpi-box">
+            <div class="kpi-value">₪{{ '%.2f' | format(val / 100) }}</div>
+            <div class="kpi-label">{{ cat }}</div>
+        </div>
+        {% endfor %}
+        {% for p, val in summary.by_partner_cents.items() %}
+        <div class="kpi-box">
+            <div class="kpi-value">₪{{ '%.2f' | format(val / 100) }}</div>
+            <div class="kpi-label">{{ p }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if summary.total_cents > 0 %}
+    <div class="chart-container">
+        <div>
+            <h2>הוצאות לפי קטגוריה</h2>
+            <div class="chart-box">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+        <div>
+            <h2>הוצאות לפי שותף/ה</h2>
+            <div class="chart-box">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const catLabels = {{ cat_labels | tojson }};
+        const catValues = {{ cat_values | tojson }};
+        const catColors = {{ cat_colors | tojson }};
+
+        new Chart(document.getElementById('pieChart'), {
+            type: 'pie',
+            data: {
+                labels: catLabels,
+                datasets: [{
+                    data: catValues,
+                    backgroundColor: catColors,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                return ctx.label + ': ₪' + (ctx.parsed / 100).toFixed(2);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const partLabels = {{ part_labels | tojson }};
+        const partValues = {{ part_values | tojson }};
+        const partColors = {{ part_colors | tojson }};
+
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: partLabels,
+                datasets: [{
+                    data: partValues,
+                    backgroundColor: partColors,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(ctx) {
+                                return '₪' + (ctx.parsed.y / 100).toFixed(2);
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        ticks: {
+                            callback: function(v) { return '₪' + (v/100).toFixed(0); }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    {% else %}
+    <p style="text-align: center; color: #999; padding: 40px 0;">אין נתונים לחודש זה</p>
+    {% endif %}
+
+    <form method="GET" action="{{ url_for('export_data') }}" style="margin-top: 16px;">
+        <input type="hidden" name="month" value="{{ selected_month }}">
+        <button type="submit" name="format" value="csv" class="btn btn-success">📥 ייצוא CSV</button>
+        <button type="submit" name="format" value="json" class="btn btn-success">📥 ייצוא JSON</button>
+    </form>
+
+    {% else %}
+    <p style="text-align: center; color: #999; padding: 40px 0;">בחר חודש לצפייה</p>
+    {% endif %}
+</div>
+{% endblock %}
