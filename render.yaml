@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: couples-expenses
+    runtime: python
+    rootDir: web
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: APP_USERNAME
+        value: couple
+      - key: APP_PASSWORD
+        value: expenses123
+      - key: PYTHON_VERSION
+        value: "3.11.11"

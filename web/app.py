@@ -225,6 +225,7 @@ def export_data():
 
 # --------------- Init & Run ---------------
 
+init_db(DB_PATH)
+
 if __name__ == "__main__":
-    init_db(DB_PATH)
     app.run(debug=True, host="0.0.0.0", port=5000)
