@@ -150,7 +150,7 @@
     {% if session.get('logged_in') %}
     <nav class="navbar">
         <div class="nav-links">
-            <a href="{{ url_for('add_expense') }}" class="{{ 'active' if request.endpoint == 'add_expense' }}">➕ הוסף הוצאה</a>
+            <a href="{{ url_for('add_expense_route') }}" class="{{ 'active' if request.endpoint == 'add_expense_route' }}">➕ הוסף הוצאה</a>
             <a href="{{ url_for('expense_list') }}" class="{{ 'active' if request.endpoint == 'expense_list' }}">📋 רשימה</a>
             <a href="{{ url_for('dashboard') }}" class="{{ 'active' if request.endpoint == 'dashboard' }}">📊 דשבורד</a>
         </div>
