@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>דף עבודה - משוואות עם שברים (כפל בהצלבה)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'David', 'Times New Roman', serif;
+      line-height: 1.8;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      color: #222;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    .student-info {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid #333;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .student-info span {
+      border-bottom: 1px dotted #999;
+      min-width: 150px;
+      display: inline-block;
+    }
+
+    .instructions {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .instructions strong {
+      color: #1a5276;
+    }
+
+    .question {
+      margin-bottom: 2.5rem;
+      page-break-inside: avoid;
+    }
+
+    .question-number {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .equation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 1.6rem;
+      margin: 0.5rem 0;
+      direction: ltr;
+    }
+
+    .fraction {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .fraction .numerator {
+      border-bottom: 2px solid #333;
+      padding: 0 0.5rem 0.2rem;
+      min-width: 3rem;
+    }
+
+    .fraction .denominator {
+      padding: 0.2rem 0.5rem 0;
+      min-width: 3rem;
+    }
+
+    .equals {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .work-space {
+      border: 1px dashed #ccc;
+      border-radius: 6px;
+      min-height: 100px;
+      margin-top: 0.5rem;
+      background: #fafafa;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 2px solid #333;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    @media print {
+      body { padding: 1rem; }
+      .question { margin-bottom: 2rem; }
+      .work-space { min-height: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>דף עבודה - משוואות עם שברים</h1>
+  <p class="subtitle">כיתה ח' | פתרון בעזרת כפל בהצלבה</p>
+
+  <div class="student-info">
+    <div>שם: <span>&nbsp;</span></div>
+    <div>כיתה: <span>&nbsp;</span></div>
+    <div>תאריך: <span>&nbsp;</span></div>
+  </div>
+
+  <div class="instructions">
+    <strong>הוראות:</strong> פתרו כל משוואה בעזרת <strong>כפל בהצלבה</strong> (כפל שתי וערב).
+    הראו את כל שלבי הפתרון במקום המיועד.
+  </div>
+
+  <!-- שאלה 1: x/3 = 4/6 → 6x = 12 → x = 2 -->
+  <div class="question">
+    <div class="question-number">1.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">x</div>
+        <div class="denominator">3</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">4</div>
+        <div class="denominator">6</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- שאלה 2: 5/x = 10/8 → 40 = 10x → x = 4 -->
+  <div class="question">
+    <div class="question-number">2.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">5</div>
+        <div class="denominator">x</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">10</div>
+        <div class="denominator">8</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- שאלה 3: 3/7 = x/21 → 63 = 7x → x = 9 -->
+  <div class="question">
+    <div class="question-number">3.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">3</div>
+        <div class="denominator">7</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">x</div>
+        <div class="denominator">21</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- שאלה 4: (x+1)/4 = 3/2 → 2(x+1) = 12 → 2x+2=12 → x = 5 -->
+  <div class="question">
+    <div class="question-number">4.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">x + 1</div>
+        <div class="denominator">4</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">3</div>
+        <div class="denominator">2</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- שאלה 5: 2/5 = 6/(x+1) → 2(x+1) = 30 → 2x+2=30 → x = 14 -->
+  <div class="question">
+    <div class="question-number">5.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">2</div>
+        <div class="denominator">5</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">6</div>
+        <div class="denominator">x + 1</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- שאלה 6: (2x)/3 = 8/6 → 12x = 24 → x = 2 -->
+  <div class="question">
+    <div class="question-number">6.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">2x</div>
+        <div class="denominator">3</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">8</div>
+        <div class="denominator">6</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- שאלה 7: 7/2 = (x-3)/4 → 28 = 2(x-3) → 28 = 2x-6 → x = 17 -->
+  <div class="question">
+    <div class="question-number">7.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">7</div>
+        <div class="denominator">2</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">x − 3</div>
+        <div class="denominator">4</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- שאלה 8: (3x+1)/5 = 4/10 → 10(3x+1) = 20 → 30x+10=20 → x = 1/3 -->
+  <div class="question">
+    <div class="question-number">8.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">3x + 1</div>
+        <div class="denominator">5</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">4</div>
+        <div class="denominator">10</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- שאלה 9: 9/(x+2) = 3/5 → 45 = 3(x+2) → 45 = 3x+6 → x = 13 -->
+  <div class="question">
+    <div class="question-number">9.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">9</div>
+        <div class="denominator">x + 2</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">3</div>
+        <div class="denominator">5</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <!-- שאלה 10: (x+4)/6 = (x-1)/3 → 3(x+4) = 6(x-1) → 3x+12=6x-6 → 18=3x → x = 6 -->
+  <div class="question">
+    <div class="question-number">10.</div>
+    <div class="equation">
+      <div class="fraction">
+        <div class="numerator">x + 4</div>
+        <div class="denominator">6</div>
+      </div>
+      <div class="equals">=</div>
+      <div class="fraction">
+        <div class="numerator">x − 1</div>
+        <div class="denominator">3</div>
+      </div>
+    </div>
+    <div class="work-space"></div>
+  </div>
+
+  <div class="footer-note">
+    בהצלחה! ✏️
+  </div>
+
+</body>
+</html>
